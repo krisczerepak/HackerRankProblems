@@ -15,9 +15,23 @@ public:
 	int getHeight();
 	int CalculateVolume();
 	friend bool operator<(Box& a, Box& b) {
-		std::cout << "HAHA";
-		return true;
+		if (a.l < b.l) {
+			return true;
+		}
+		if (a.b < b.b && a.l == b.l) {
+			return true;
+		}
+		if (a.h < b.h && a.b == b.b && a.l == b.l) {
+			return true;
+		}
+		//std::cout << "HAHA";
+		return false;
 	}
+	friend ostream& operator<<(ostream& os, const Box& boxy) {
+		os << boxy.l << ' ' << boxy.b << ' ' << boxy.h;
+		return os;
+	}
+
 };
 Box::Box(void) {
 	//l, b, h = 0;
@@ -72,6 +86,7 @@ int Box::CalculateVolume() {
 
 int main()
 {
-	//Box boxed_lunch(1, 2, 3);
+	Box boxed_lunch(1, 2, 3);
+	cout << boxed_lunch;
 	return 0;
 }
